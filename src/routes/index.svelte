@@ -1,8 +1,14 @@
 <script lang="ts">
 	export let id: number;
 	export let advice: string;
-
 	import '../styles.css';
+
+	async function getData() {
+		const result = await fetch('https://api.adviceslip.com/advice', { cache: 'no-cache' });
+		const data = await result.json();
+		id = data.slip.id;
+		advice = data.slip.advice;
+	}
 </script>
 
 <svelte:head>
@@ -22,11 +28,9 @@
 		<img src="pattern-divider-desktop.svg" alt="divider" />
 	</div>
 
-	<a sveltekit:prefetch sveltekit:reload href="/">
-		<div class="dice">
-			<img src="icon-dice.svg" alt="dice" />
-		</div>
-	</a>
+	<div class="dice" on:click={getData}>
+		<img src="icon-dice.svg" alt="dice" />
+	</div>
 </main>
 
 <style>
