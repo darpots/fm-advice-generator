@@ -88,6 +88,10 @@
 		position: relative;
 		top: 2rem;
 	}
+	.dice:hover {
+		box-shadow: 0px 0px 40px var(--neonGreen);
+		cursor: pointer;
+	}
 
 	@media screen and (min-width: 48rem) {
 		main {
